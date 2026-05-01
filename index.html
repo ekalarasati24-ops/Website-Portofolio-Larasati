@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Eka Larasati Ningtyas | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff5f8 0%, #eef2ff 100%);
+            color: #1e1b2f;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes cinematicZoom { 0% { transform: scale(1.3); opacity: 0; filter: blur(10px); } 100% { transform: scale(1); opacity: 1; filter: blur(0); } }
+        @keyframes softGlow { 0% { box-shadow: 0 0 0 0 rgba(180, 130, 200, 0.4); } 50% { box-shadow: 0 0 0 20px rgba(180, 130, 200, 0.1); } 100% { box-shadow: 0 0 0 0 rgba(180, 130, 200, 0.4); } }
+        @keyframes aurora { 0% { background-position: 0% 0%; } 50% { background-position: 100% 100%; } 100% { background-position: 0% 0%; } }
+        @keyframes textFade { 0% { letter-spacing: 2px; opacity: 0.7; } 50% { letter-spacing: 5px; opacity: 1; } 100% { letter-spacing: 2px; opacity: 0.7; } }
+        
+        .animated-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(-45deg, #fff5f8, #ffe0e8, #eef2ff, #f5e6f0); background-size: 400% 400%; animation: gradientBG 15s ease infinite; }
+        
+        /* CINEMATIC OVERLAY - ESTETIK SOFT PASTEL GALAXY */
+        .cinematic-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: linear-gradient(135deg, #0f0c1f, #1a1635, #2a2348, #1e1a3a, #0f0c1f);
+            background-size: 400% 400%;
+            animation: aurora 15s ease infinite;
+            z-index: 2000; display: flex; justify-content: center; align-items: center; 
+            transition: opacity 1s ease; opacity: 1; visibility: visible;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Bintang-bintang kecil estetik */
+        .cinematic-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(2px 2px at 20% 30%, rgba(255,215,245,0.6), rgba(0,0,0,0)),
+                              radial-gradient(1px 1px at 70% 85%, rgba(200,180,255,0.5), rgba(0,0,0,0)),
+                              radial-gradient(3px 3px at 45% 50%, rgba(255,200,220,0.4), rgba(0,0,0,0));
+            background-repeat: no-repeat;
+            background-size: 200px 200px, 150px 150px, 250px 250px;
+            animation: aurora 20s ease infinite;
+            pointer-events: none;
+        }
+        /* Aurora glow */
+        .cinematic-overlay::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 40%, rgba(180,130,200,0.08) 0%, rgba(255,180,200,0.05) 50%, transparent 70%);
+            animation: aurora 12s ease infinite;
+            pointer-events: none;
+        }
+        .cinematic-overlay.hide { opacity: 0; visibility: hidden; }
+        .cinematic-content { 
+            text-align: center; animation: cinematicZoom 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards; 
+            padding: 20px; position: relative; z-index: 2;
+        }
+        .cinematic-logo { 
+            width: 140px; height: 140px; 
+            background: linear-gradient(135deg, #e8b4d8, #c8b0e8, #b8d4e8);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            margin: 0 auto 30px; 
+            animation: softGlow 2.5s infinite, float 3s ease-in-out infinite; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(200,160,220,0.3);
+        }
+        .cinematic-logo img { width: 100%; height: 100%; object-fit: cover; }
+        .cinematic-content h1 { 
+            font-family: 'Playfair Display', 'Poppins', serif;
+            font-size: 2.8rem; 
+            font-weight: 700;
+            background: linear-gradient(135deg, #f0c0d8, #d4b8e8, #b8c8e8, #f0d0e0);
+            background-size: 300% 300%;
+            background-clip: text; -webkit-background-clip: text; color: transparent;
+            letter-spacing: 4px; 
+            animation: textFade 3s ease-in-out infinite;
+            margin-bottom: 5px;
+        }
+        .cinematic-content p { 
+            color: rgba(255,245,250,0.85); 
+            font-size: 0.9rem; 
+            letter-spacing: 5px; 
+            margin-top: 12px;
+            font-weight: 300;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #e8c8e0, #c8b8e0);
+            background-clip: text; -webkit-background-clip: text; color: transparent;
+        }
+        .cinematic-click { 
+            margin-top: 45px; 
+            padding: 12px 38px; 
+            background: rgba(255,245,250,0.12);
+            backdrop-filter: blur(12px);
+            border: 1.5px solid rgba(255,215,240,0.6); 
+            border-radius: 50px; 
+            color: #f0d0e0; 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+            cursor: pointer; 
+            transition: all 0.4s ease; 
+            display: inline-block;
+            letter-spacing: 2px;
+        }
+        .cinematic-click:hover { 
+            background: rgba(210,180,230,0.25);
+            border-color: #e8b4d8;
+            color: #fff0f5;
+            transform: scale(1.05);
+            letter-spacing: 4px;
+            box-shadow: 0 5px 20px rgba(200,160,220,0.3);
+        }
+        
+        .container { max-width: 1280px; margin: 0 auto; padding: 1rem; }
+        @media (max-width: 768px) { 
+            .hero { flex-direction: column; text-align: center; } 
+            .avatar-img { width: 120px; height: 120px; } 
+            .grid-2col { grid-template-columns: 1fr; } 
+            .portfolio-gallery { grid-template-columns: 1fr; } 
+            .cinematic-logo { width: 100px; height: 100px; }
+            .cinematic-content h1 { font-size: 1.6rem; letter-spacing: 2px; }
+        }
+        
+        nav { background: rgba(255,248,250,0.95); backdrop-filter: blur(12px); border-radius: 50px; padding: 0.5rem 1rem; margin-bottom: 1.5rem; position: sticky; top: 10px; z-index: 50; }
+        .nav-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; list-style: none; }
+        .nav-links a { text-decoration: none; font-weight: 600; color: #4a3b5c; transition: 0.3s; font-size: 0.8rem; padding: 0.3rem 0.6rem; border-radius: 20px; }
+        .nav-links a:hover { background: #d96c94; color: white; }
+        
+        .hero { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; background: #ffffffdd; backdrop-filter: blur(10px); border-radius: 1.5rem; padding: 1.5rem; margin-bottom: 2rem; border: 1px solid #ffe2ec; }
+        .hero-text { flex: 2; }
+        .hero-text h1 { font-size: 2rem; background: linear-gradient(135deg, #b15e7c, #6c8fd4); background-clip: text; -webkit-background-clip: text; color: transparent; }
+        .hero-subtitle { font-size: 1rem; font-weight: 500; color: #d96c94; margin: 0.3rem 0; }
+        .hero-badge { display: inline-block; background: #ffe0e8; padding: 0.2rem 0.8rem; border-radius: 40px; font-size: 0.7rem; color: #b3456b; margin-bottom: 0.8rem; animation: pulse 2s infinite; }
+        .hero-text p { color: #4a425c; font-size: 0.85rem; line-height: 1.5; }
+        .hero-avatar { flex: 1; text-align: center; cursor: pointer; }
+        .avatar-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 4px solid #ffe0ec; animation: float 3s ease-in-out infinite; }
+        
+        .section { background: #ffffffcc; backdrop-filter: blur(4px); border-radius: 1.5rem; padding: 1.2rem; margin-bottom: 1.5rem; border: 1px solid #ffdee9; }
+        .section-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; border-bottom: 3px solid #ffd9e4; padding-bottom: 0.4rem; color: #b14d72; }
+        .grid-2col { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+        .clickable-card { background: #fffafc; border-radius: 1rem; padding: 0.8rem; transition: 0.3s; border: 1px solid #ffecf1; cursor: pointer; }
+        .clickable-card:hover { transform: translateY(-3px); border-color: #fbc4d4; box-shadow: 0 5px 15px rgba(176,90,120,0.1); }
+        .clickable-card h3 { font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; color: #2c3e66; }
+        .clickable-card p { font-size: 0.75rem; color: #5a4a6e; margin-top: 5px; }
+        .clickable-card .year { font-size: 0.6rem; background: #e9eefd; display: inline-block; padding: 0.1rem 0.6rem; border-radius: 40px; margin-top: 0.3rem; }
+        .clickable-card .view-detail { margin-top: 8px; font-size: 0.6rem; color: #d96c94; }
+        
+        .portfolio-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+        .portfolio-card { background: #fff; border-radius: 1rem; overflow: hidden; border: 1px solid #ffe2ec; cursor: pointer; transition: 0.3s; }
+        .portfolio-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(176,90,120,0.15); }
+        .portfolio-img-preview { width: 100%; height: 150px; background: #fef0f5; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #b45d7e; overflow: hidden; }
+        .portfolio-img-preview img { width: 100%; height: 100%; object-fit: cover; }
+        .portfolio-info { padding: 0.6rem; }
+        .portfolio-info h4 { font-size: 0.9rem; font-weight: 700; color: #2b3b6e; }
+        .portfolio-info p { font-size: 0.7rem; color: #635e74; margin-top: 3px; }
+        
+        .social-grid { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+        .social-card { background: #fff5f8; border-radius: 2rem; padding: 0.5rem 1rem; display: inline-flex; align-items: center; gap: 8px; border: 1px solid #ffe2eb; text-decoration: none; color: #4f3f60; font-size: 0.75rem; transition: 0.3s; }
+        .social-card:hover { transform: translateY(-2px); background: #feeef3; color: #b5476c; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: white; border-radius: 1.5rem; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; padding: 1rem; position: relative; }
+        .modal-close { position: absolute; top: 10px; right: 15px; font-size: 1.5rem; cursor: pointer; }
+        .modal-gallery { display: flex; flex-wrap: wrap; gap: 10px; margin: 10px 0; justify-content: center; }
+        .modal-gallery img { width: 100px; height: 100px; object-fit: cover; border-radius: 10px; cursor: pointer; border: 2px solid #ffe0ec; transition: 0.2s; }
+        .modal-gallery img:hover { transform: scale(1.05); }
+        
+        footer { text-align: center; padding: 1rem 0; color: #8e7c9a; font-size: 0.7rem; border-top: 1px solid #ffdee9; margin-top: 1rem; }
+        .profile-detail-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1500; justify-content: center; align-items: center; }
+        .profile-detail-modal.active { display: flex; }
+        .profile-detail-card { background: white; border-radius: 1.5rem; max-width: 350px; width: 90%; padding: 1rem; text-align: center; position: relative; }
+        .profile-detail-card .avatar-large { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 4px solid #d96c94; margin-bottom: 0.8rem; }
+        .profile-detail-close { position: absolute; top: 10px; right: 15px; font-size: 1.3rem; cursor: pointer; }
+        
+        .contact-info { text-align: center; margin-top: 1rem; background: #fff2f7; border-radius: 40px; padding: 0.6rem; font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+    <div class="cinematic-overlay" id="cinematicOverlay">
+        <div class="cinematic-content">
+            <div class="cinematic-logo" id="cinematicLogo">
+                <img id="cinematicLogoImg" src="https://i.postimg.cc/BZ88XFkm/photo-6316309279689872201-y.jpg" alt="Logo" style="width:100%;height:100%;object-fit:cover;">
+            </div>
+            <h1>EKA LARASATI</h1>
+            <p>ENVIRONMENTAL LEADER | WASTE MANAGEMENT</p>
+            <div class="cinematic-click" id="enterBtn">✦ ENTER PORTFOLIO ✦</div>
+        </div>
+    </div>
+    <div class="animated-bg"></div>
+    <div class="container" id="mainContent" style="display: none;">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#beranda">🏠 Beranda</a></li>
+                <li><a href="#prestasi">🏆 Prestasi</a></li>
+                <li><a href="#pengalaman">💼 Pengalaman</a></li>
+                <li><a href="#portofolio">📁 Portofolio</a></li>
+                <li><a href="#sosial">📱 Sosial</a></li>
+            </ul>
+        </nav>
+        
+        <div id="beranda" class="hero">
+            <div class="hero-text">
+                <h1>Eka Larasati Ningtyas</h1>
+                <div class="hero-subtitle">🌿 Pengolahan Limbah | Politeknik Perkapalan Negeri Surabaya</div>
+                <div class="hero-badge"><i class="fas fa-leaf"></i> Mahasiswa Aktif & Penggerak Organisasi</div>
+                <p>Mahasiswa D4 Teknik Pengolahan Limbah di PPNS. Aktif di BEM PPNS, NOVO, serta volunteer lingkungan. Berpengalaman di bidang lingkungan, kepemimpinan, dan pengembangan soft skill.</p>
+            </div>
+            <div class="hero-avatar" id="avatarClick">
+                <img class="avatar-img" id="profileImage" src="https://i.postimg.cc/DfWW8GHC/photo-6316309279689872203-y.jpg" alt="Foto Profil">
+                <p style="font-size:0.6rem; margin-top:6px;">✨ Klik foto untuk detail ✨</p>
+            </div>
+        </div>
+        
+        <div id="prestasi" class="section">
+            <div class="section-title"><i class="fas fa-trophy"></i><span>Prestasi & Pencapaian</span></div>
+            <div class="grid-2col" id="prestasiContainer"></div>
+        </div>
+        
+        <div id="pengalaman" class="section">
+            <div class="section-title"><i class="fas fa-briefcase"></i><span>Pengalaman & Organisasi</span></div>
+            <div class="grid-2col" id="pengalamanContainer"></div>
+        </div>
+        
+        <div id="portofolio" class="section">
+            <div class="section-title"><i class="fas fa-folder-open"></i><span>Portofolio Karya</span></div>
+            <div class="portfolio-gallery" id="portofolioContainer"></div>
+        </div>
+        
+        <div id="sosial" class="section">
+            <div class="section-title"><i class="fas fa-hashtag"></i><span>Ikuti & Terhubung</span></div>
+            <div class="social-grid">
+                <a href="https://www.instagram.com/ekalarasatiii" class="social-card" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.tiktok.com/@ekalarasatiii" class="social-card" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                <a href="https://www.linkedin.com/in/eka-larasati-ningtyas-837677340" class="social-card" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+            </div>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i> ekalarasatiii24@gmail.com<br>
+                <i class="fas fa-phone-alt"></i> +62 822-3135-6661 | 📍 Surabaya
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Eka Larasati Ningtyas — All Rights Reserved</p>
+            <p style="margin-top:5px;">✨ Klik card untuk melihat galeri foto ✨</p>
+        </footer>
+    </div>
+    
+    <div id="profileDetailModal" class="profile-detail-modal">
+        <div class="profile-detail-card">
+            <span class="profile-detail-close" id="profileDetailClose">&times;</span>
+            <img id="profileDetailImg" class="avatar-large" src="">
+            <h2>Eka Larasati Ningtyas</h2>
+            <p>D4 Teknik Pengolahan Limbah - PPNS<br>Aktif di BEM, NOVO, Volunteer<br>Passion: Lingkungan & Desain Kreatif</p>
+            <div class="social-grid" style="margin-top:10px;">
+                <a href="https://www.instagram.com/ekalarasatiii" class="social-card" target="_blank"><i class="fab fa-instagram"></i> IG</a>
+                <a href="https://www.tiktok.com/@ekalarasatiii" class="social-card" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <h3 id="modalTitle" style="margin-bottom:5px;"></h3>
+            <p id="modalDesc" style="color:#666; margin-bottom:10px;"></p>
+            <div id="modalGallery" class="modal-gallery"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== DATA GALLERY ====================
+        
+        const prestasiData = [
+            { id: 0, title: "2nd Runner-Up Dance Competition DBL 2021", desc: "Juara 3 Dance Competition DBL Indonesia, koreografi kreatif dan kekompakan tim.", year: "2021", gallery: [
+                "https://i.postimg.cc/P579fBwF/photo-6314057479876186376-y.jpg",
+                "https://i.postimg.cc/3xqVrPvL/photo-6314057479876186377-x.jpg"
+            ] },
+            { id: 1, title: "Master of Ceremony - Graduation 46 Stembaya", desc: "Pembawa acara kelulusan Stembaya 2023, memimpin jalannya acara dengan percaya diri.", year: "2023", gallery: [
+                "https://i.postimg.cc/8PMjbSTq/photo-6316309279689871550-y.jpg"
+            ] },
+            { id: 2, title: "MC Paskibraka Platoon 12 Event", desc: "Pembawa acara event Paskibraka tingkat regional.", year: "2023", gallery: [
+                "https://i.postimg.cc/7ZRdPp25/photo-6314057479876186373-y.jpg",
+                "https://i.postimg.cc/sgLqfthx/photo-6314057479876186374-y.jpg",
+                "https://i.postimg.cc/9Q0shWrM/photo-6314057479876186390-y.jpg",
+                "https://i.postimg.cc/XYqtbVpG/photo-6314057479876186391-y.jpg"
+            ] },
+            { id: 3, title: "Sertifikat Kompetensi Uji Lingkungan Air Bersih", desc: "Menguasai teknik sampling, uji pH, TDS, TSS sesuai standar laboratorium.", year: "2024", gallery: [] }
+        ];
+        
+        const pengalamanData = [
+            { id: 0, title: "Quality Control - PT. Sumatraco", desc: "Magang QC: analisa kualitas garam, pencatatan data Excel.", year: "Jun - Des 2024", gallery: [] },
+            { id: 1, title: "Barista & Cashier - Cafe Roasterrich", desc: "Pembuatan kopi, melayani pelanggan, laporan penjualan.", year: "Mei 2023 - Agt 2025", gallery: [] },
+            { id: 2, title: "OSIS SMKN 5 Surabaya - Ketua Sekbid 7 & 2", desc: "Inovasi program kerja, event Diesnatalis, MPLS.", year: "2021 - 2023", gallery: ["https://i.postimg.cc/FF2YcRQt/photo-6314057479876186381-y.jpg"] },
+            { id: 3, title: "Paskibraka Passus - Divisi Editing & Sponsorship", desc: "Editor video, foto, admin IG, ketua sponsorship.", year: "2021 - Sekarang", gallery: [
+                "https://i.postimg.cc/sftMSXR3/photo-6314057479876186384-y.jpg",
+                "https://i.postimg.cc/59ZXv0MV/photo-6316309279689871551-y.jpg",
+                "https://i.postimg.cc/v8p49BdF/photo-6316309279689871552-y.jpg",
+                "https://i.postimg.cc/CLkz4gFL/photo-6316309279689871857-y.jpg"
+            ] },
+            { id: 4, title: "Staf Magang BEM PPNS 2025", desc: "Melatih skill organisasi dalam cakupan kampus.", year: "2025", gallery: ["https://i.postimg.cc/RC33Ntys/photo-6316309279689872221-y.jpg"] },
+            { id: 5, title: "Staf Ahli BEM PPNS 2026 - 2027", desc: "Tanggung jawab lebih besar, memperluas relasi eksternal.", year: "2026 - 2027", gallery: [
+                "https://i.postimg.cc/ncBC1JHJ/photo-6316309279689872020-y.jpg",
+                "https://i.postimg.cc/m2CtSsTv/photo-6316309279689872021-y.jpg"
+            ] },
+            { id: 6, title: "NOVO 2026 - 2027", desc: "Organisasi eksternal, relasi luar kampus.", year: "2026 - 2027", gallery: [] },
+            { id: 7, title: "Volunteer Green Cup (Mengajar & Takjil)", desc: "Mengajar anak panti asuhan dan berbagi takjil.", year: "2026", gallery: [
+                "https://i.postimg.cc/gk8nKWYr/photo-6316309279689871688-y.jpg",
+                "https://i.postimg.cc/5NL6mVxF/photo-6316309279689871690-y.jpg",
+                "https://i.postimg.cc/GhGHjCcy/photo-6316309279689871691-y.jpg"
+            ] },
+            { id: 8, title: "Green Action 2025 - Penghijauan Ramah Lingkungan", desc: "Menanam di Taman Harmoni menggunakan pupuk olahan feses.", year: "2025", gallery: [
+                "https://i.postimg.cc/pdgwCgV2/photo-6316309279689871693-y.jpg",
+                "https://i.postimg.cc/fLm6rBkW/photo-6316309279689871650-y.jpg",
+                "https://i.postimg.cc/JnZ92Ptd/photo-6316309279689871651-y.jpg",
+                "https://i.postimg.cc/tJz8XJ30/photo-6316309279689871654-y.jpg"
+            ] }
+        ];
+        
+        const portofolioData = [
+            { id: 0, title: "Logo Design", desc: "Desain logo modern untuk event diesnatalis dan branding organisasi.", icon: "fas fa-paintbrush", gallery: ["https://i.postimg.cc/QNRF5tZ0/photo-6316309279689872165-y.jpg"] },
+            { id: 1, title: "Pamflet Digital", desc: "Pamflet promosi acara pentas seni, lomba dance, dan kampanye lingkungan.", icon: "fas fa-scroll", gallery: [
+                "https://i.postimg.cc/PfBCZxnK/photo-6316309279689872163-y.jpg",
+                "https://i.postimg.cc/Vs3JM6PR/photo-6316309279689872164-y.jpg"
+            ] },
+            { id: 2, title: "Feeds Instagram", desc: "Desain feed IG untuk organisasi paskibra dengan tema soft pink & baby blue.", icon: "fab fa-instagram", gallery: [] },
+            { id: 3, title: "Video Editing", desc: "Editing video dokumentasi kegiatan menggunakan CapCut.", icon: "fas fa-video", gallery: [] }
+        ];
+        
+        function renderPrestasi() {
+            const container = document.getElementById('prestasiContainer');
+            container.innerHTML = prestasiData.map(item => `
+                <div class="clickable-card" onclick="openModal('${item.title}', '${item.desc} (${item.year})', ${JSON.stringify(item.gallery).replace(/"/g, '&quot;')})">
+                    <h3><i class="fas fa-medal"></i> ${item.title}</h3>
+                    <p>${item.desc.substring(0, 80)}${item.desc.length > 80 ? '...' : ''}</p>
+                    <div class="year">${item.year}</div>
+                    <div class="view-detail"><i class="fas fa-images"></i> ${item.gallery.length} foto • Klik untuk detail</div>
+                </div>
+            `).join('');
+        }
+        
+        function renderPengalaman() {
+            const container = document.getElementById('pengalamanContainer');
+            container.innerHTML = pengalamanData.map(item => `
+                <div class="clickable-card" onclick="openModal('${item.title}', '${item.desc} (${item.year})', ${JSON.stringify(item.gallery).replace(/"/g, '&quot;')})">
+                    <h3><i class="fas fa-briefcase"></i> ${item.title}</h3>
+                    <p>${item.desc.substring(0, 80)}${item.desc.length > 80 ? '...' : ''}</p>
+                    <div class="year">${item.year}</div>
+                    <div class="view-detail"><i class="fas fa-images"></i> ${item.gallery.length} foto • Klik untuk detail</div>
+                </div>
+            `).join('');
+        }
+        
+        function renderPortofolio() {
+            const container = document.getElementById('portofolioContainer');
+            container.innerHTML = portofolioData.map(item => `
+                <div class="portfolio-card" onclick="openModal('${item.title}', '${item.desc}', ${JSON.stringify(item.gallery).replace(/"/g, '&quot;')})">
+                    <div class="portfolio-img-preview">
+                        ${item.gallery.length > 0 ? `<img src="${item.gallery[0]}" alt="${item.title}">` : `<i class="${item.icon}"></i>`}
+                    </div>
+                    <div class="portfolio-info">
+                        <h4>${item.title}</h4>
+                        <p>${item.desc.substring(0, 60)}${item.desc.length > 60 ? '...' : ''}</p>
+                        <div class="view-detail"><i class="fas fa-images"></i> ${item.gallery.length} foto • Klik untuk detail</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function openModal(title, desc, galleryArray) {
+            document.getElementById('modalTitle').innerHTML = title;
+            document.getElementById('modalDesc').innerHTML = desc;
+            const galleryDiv = document.getElementById('modalGallery');
+            
+            if (galleryArray.length === 0) {
+                galleryDiv.innerHTML = '<p style="color:#999; text-align:center; padding:20px;">📷 Belum ada foto untuk item ini.</p>';
+            } else {
+                galleryDiv.innerHTML = galleryArray.map(img => `
+                    <div class="gallery-item">
+                        <img src="${img}" onclick="window.open(this.src)" alt="Gallery image">
+                    </div>
+                `).join('');
+            }
+            document.getElementById('modal').classList.add('active');
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+        
+        // Cinematic Enter
+        const cinematicOverlay = document.getElementById('cinematicOverlay');
+        const mainContent = document.getElementById('mainContent');
+        const enterBtn = document.getElementById('enterBtn');
+        
+        function showMain() {
+            cinematicOverlay.classList.add('hide');
+            mainContent.style.display = 'block';
+            setTimeout(() => cinematicOverlay.style.display = 'none', 800);
+        }
+        
+        if (enterBtn) enterBtn.addEventListener('click', (e) => { e.preventDefault(); showMain(); });
+        cinematicOverlay.addEventListener('click', (e) => { if (e.target === cinematicOverlay) showMain(); });
+        
+        // Profile Modal
+        const profileModal = document.getElementById('profileDetailModal');
+        const profileDetailImg = document.getElementById('profileDetailImg');
+        const avatarClick = document.getElementById('avatarClick');
+        const profileClose = document.getElementById('profileDetailClose');
+        
+        avatarClick.addEventListener('click', () => {
+            profileDetailImg.src = document.getElementById('profileImage').src;
+            profileModal.classList.add('active');
+        });
+        profileClose.addEventListener('click', () => profileModal.classList.remove('active'));
+        profileModal.addEventListener('click', (e) => { if (e.target === profileModal) profileModal.classList.remove('active'); });
+        
+        // Modal Close
+        document.getElementById('modalClose').onclick = closeModal;
+        window.onclick = (e) => { if (e.target === document.getElementById('modal')) closeModal(); };
+        
+        // Render All
+        renderPrestasi();
+        renderPengalaman();
+        renderPortofolio();
+    </script>
+</body>
+</html>
